@@ -1,0 +1,100 @@
+[{
+		"name":	"Metoprolol",
+		"active_ingredients":	"metoprolol",
+		"dosage":	"50mg",
+		"quantity":	"69",
+		"expiry_date":	"01-12-2023",
+		"ECC_image":	"../src/assets/barcodes/metoprolol_50mg_ecc.png",
+		"ECC_data":	"metoprolol 50mg 100",
+		"side_effects":	["nausea", "vomiting", "upset stomach", "drowsiness", "skin rash"],
+		"interactions":	["donepezil", "paroxetin", "verapamil", "diltiazem"],
+		"order":	"0"
+	}, {
+		"name":	"Donepezil",
+		"active_ingredients":	"donepezil",
+		"dosage":	"5mg",
+		"quantity":	"306",
+		"expiry_date":	"21-12-2023",
+		"ECC_image":	"../src/assets/barcodes/donepezil_5mg_ecc.png",
+		"ECC_data":	"donepezil 5mg 50",
+		"side_effects":	["nausea", "vomiting", "diarrhea", "loss of appetite", "muscle cramps"],
+		"interactions":	["metoprolol", "quetiapin", "ibuprofen"],
+		"order":	"0"
+	}, {
+		"name":	"Ibuprofen",
+		"active_ingredients":	"ibuprofen",
+		"dosage":	"200mg",
+		"quantity":	"108",
+		"expiry_date":	"28-12-2023",
+		"ECC_image":	"../src/assets/barcodes/ibuprofen_200mg_ecc.png",
+		"ECC_data":	"ibuprofen 200mg 100",
+		"side_effects":	["bleeding", "stomach pain", "nausea", "vomiting", "heartburn"],
+		"interactions":	["metformin", "donepezil", "sertraline"],
+		"order":	"0"
+	}, {
+		"name":	"Levodopa",
+		"active_ingredients":	"levodopa",
+		"dosage":	"50mg",
+		"quantity":	"46",
+		"expiry_date":	"31-12-2023",
+		"ECC_image":	"../src/assets/barcodes/levodopa_50mg_ecc.png",
+		"ECC_data":	"levodopa 50mg 100",
+		"side_effects":	["diarrhea", "muscle pain", "joint pain", "sore throat", "runny nose"],
+		"interactions":	["bisoprolol"],
+		"order":	"0"
+	}, {
+		"name":	"Metformin",
+		"active_ingredients":	"metformin",
+		"dosage":	"500mg",
+		"quantity":	"100",
+		"expiry_date":	"02-12-2023",
+		"ECC_image":	"../src/assets/barcodes/metformin_500mg_ecc.png",
+		"ECC_data":	"metformin 500mg 30",
+		"side_effects":	["diarrhea", "decreased appetite", "muscle pain", "stomach pain", "nausea"],
+		"interactions":	["ibuprofen", "lisinopril"],
+		"order":	"0"
+	}, {
+		"name":	"Sertraline",
+		"active_ingredients":	"sertraline",
+		"dosage":	"50mg",
+		"quantity":	"175",
+		"expiry_date":	"04-12-2023",
+		"ECC_image":	"../src/assets/barcodes/sertralin_50mg_ecc.png",
+		"ECC_data":	"zoloft 50mg 30",
+		"side_effects":	["diarrhea", "palpitations", "dizziness", "drowsiness", "dry mouth"],
+		"interactions":	["aspirin", "ibuprofen"],
+		"order":	"0"
+	}, {
+		"name":	"Bisoprolol",
+		"active_ingredients":	"bisoprolol",
+		"dosage":	"2mg",
+		"quantity":	"35",
+		"expiry_date":	"07-12-2023",
+		"ECC_image":	"../src/assets/barcodes/bisoprolol_2mg_ecc.png",
+		"ECC_data":	"bisoprolol 2mg 100",
+		"side_effects":	["diarrhea", "rhinitis", "skin rash", "dizziness", "headache"],
+		"interactions":	["levodopa"],
+		"order":	"0"
+	}, {
+		"name":	"Lisinopril",
+		"active_ingredients":	"lisinopril",
+		"dosage":	"5mg",
+		"quantity":	"66",
+		"expiry_date":	"31-12-2023",
+		"ECC_image":	"../src/assets/barcodes/lisinopril_5mg_ecc.png",
+		"ECC_data":	"lisinopril 5mg 30",
+		"side_effects":	["diarrhea", "rhinitis", "skin rash", "dizziness", "headache"],
+		"interactions":	["metformin"],
+		"order":	"0"
+	}, {
+		"name":	"Quetiapin",
+		"active_ingredients":	"quetiapin",
+		"dosage":	"50mg",
+		"quantity":	"146",
+		"expiry_date":	"25-12-2023",
+		"ECC_image":	"../src/assets/barcodes/quetiapin_50mg_ecc.png",
+		"ECC_data":	"quetiapin 50mg 30",
+		"side_effects":	["diarrhea", "rhinitis", "skin rash", "dizziness", "headache"],
+		"interactions":	["donepezil"],
+		"order":	"0"
+	}]

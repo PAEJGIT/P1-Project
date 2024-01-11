@@ -1,0 +1,122 @@
+[{
+		"full_name":	"John Doe",
+		"room_number":	"101",
+		"CPR":	"020150-2812",
+		"date_of_birth":	"02-01-1950",
+		"phone_number":	"+45 12 34 56 78",
+		"emergency_contact":	["+45 12 45 78 90", "Wife"],
+		"conditions":	["Alzheimer's disease", "Hypertension", "Heart disease"],
+		"medicine":	[["Donepezil", "30mg", "98", "Morning", "16-12-2023", "0"], ["Quetiapin", "200mg", "94", "Lunch", "22-12-2023", "0"]],
+		"correct_medicine_scanned":	0,
+		"allergies":	["penicillin", "eggs", "nuts", "soy", "gluten"]
+	}, {
+		"full_name":	"Jane Doe",
+		"room_number":	"102",
+		"CPR":	"020150-2812",
+		"date_of_birth":	"02-01-1950",
+		"phone_number":	"+45 12 34 56 78",
+		"emergency_contact":	["+45 12 45 78 90", "Husband"],
+		"conditions":	["Alzheimer's disease", "Hypertension", "Heart disease"],
+		"medicine":	[["Metoprolol", "50mg", "50", "morning", "01-12-2023", "0"], ["Donepezil", "10mg", "39", "Evening", "25-12-2023", "0"]],
+		"correct_medicine_scanned":	0,
+		"allergies":	["nuts"]
+	}, {
+		"full_name":	"Simon Doe",
+		"room_number":	"103",
+		"CPR":	"030150-2912",
+		"date_of_birth":	"03-01-1950",
+		"phone_number":	"+45 98 76 54 32",
+		"emergency_contact":	["+45 98 98 76 54", "Wife"],
+		"conditions":	["Arthritis", "Diabetes", "High cholesterol", "Enlarged prostate"],
+		"medicine":	[["Ibuprofen", "200mg", "108", "night", "18-12-2023", "0"], ["Metformin", "500mg", "16", "morning", "02-12-2023", "0"]],
+		"correct_medicine_scanned":	0,
+		"allergies":	["shellfish", "gluten"]
+	}, {
+		"full_name":	"Sarah Jones",
+		"room_number":	"104",
+		"CPR":	"040150-3012",
+		"date_of_birth":	"04-01-1950",
+		"phone_number":	"+45 87 65 43 21",
+		"emergency_contact":	["+45 87 87 65 43", "Husband"],
+		"conditions":	["Alzheimer's disease", "Dementia", "Depression"],
+		"medicine":	[["Sertraline", "50mg", "54", "night", "04-12-2023", "0"], ["Donepezil", "10mg", "30", "Evening", "25-12-2023", "0"]],
+		"correct_medicine_scanned":	0,
+		"allergies":	[]
+	}, {
+		"full_name":	"David Jones",
+		"room_number":	"105",
+		"CPR":	"050150-3112",
+		"date_of_birth":	"05-01-1950",
+		"phone_number":	"+45 87 65 43 21",
+		"emergency_contact":	["+45 87 87 65 43", "Wife"],
+		"conditions":	["Dementia", "Depression"],
+		"medicine":	[["Sertraline", "100mg", "7", "Lunch", "04-12-2023", "0"], ["Donepezil", "10mg", "23", "morning", "25-12-2023", "0"]],
+		"correct_medicine_scanned":	0,
+		"allergies":	[]
+	}, {
+		"full_name":	"Michael Williams",
+		"room_number":	"106",
+		"CPR":	"060150-3212",
+		"date_of_birth":	"06-01-1950",
+		"phone_number":	"+45 76 54 32 10",
+		"emergency_contact":	["+45 76 76 54 32", "Wife"],
+		"conditions":	["Arthritis", "Hypertension", "Heart disease"],
+		"medicine":	[["Lisinopril", "20mg", "62", "Lunch", "31-12-2023", "0"], ["Bisoprolol", "8mg", "22", "Lunch", "07-12-2023", "0"]],
+		"correct_medicine_scanned":	0,
+		"allergies":	["penicillin", "nuts", "soy"]
+	}, {
+		"full_name":	"Emily Davis",
+		"room_number":	"107",
+		"CPR":	"070150-3312",
+		"date_of_birth":	"07-01-1950",
+		"phone_number":	"+45 65 43 21 09",
+		"emergency_contact":	["+45 65 65 43 21", "Husband"],
+		"conditions":	["Dementia", "Diabetes", "Depression"],
+		"medicine":	[["Metformin", "500mg", "5", "morning", "02-12-2023", "0"], ["Sertraline", "100mg", "92", "Evening", "04-12-2023", "0"]],
+		"correct_medicine_scanned":	0,
+		"allergies":	[]
+	}, {
+		"full_name":	"Robert Davis",
+		"room_number":	"108",
+		"CPR":	"080150-3412",
+		"date_of_birth":	"08-01-1950",
+		"phone_number":	"+45 65 43 21 09",
+		"emergency_contact":	["+45 65 65 43 21", "Wife"],
+		"conditions":	["Dementia", "Diabetes", "Hypertension"],
+		"medicine":	[["Metformin", "1000mg", "50", "morning", "02-12-2023", "0"], ["Lisinopril", "20mg", "4", "morning", "31-12-2023", "0"]],
+		"correct_medicine_scanned":	0,
+		"allergies":	[]
+	}, {
+		"full_name":	"Matthew Miller",
+		"room_number":	"109",
+		"CPR":	"090150-3512",
+		"date_of_birth":	"09-01-1950",
+		"phone_number":	"+45 54 32 10 98",
+		"emergency_contact":	["+45 54 54 32 10", "Wife"],
+		"conditions":	["Parkinson's disease", "Chronic obstructive pulmonary disease"],
+		"medicine":	[["Levodopa", "50mg", "46", "morning", "31-12-2023", "14"], ["Quetiapin", "50mg", "12", "morning", "22-12-2023", "0"]],
+		"correct_medicine_scanned":	1,
+		"allergies":	[]
+	}, {
+		"full_name":	"Ashley Miller",
+		"room_number":	"110",
+		"CPR":	"100150-3612",
+		"date_of_birth":	"10-01-1950",
+		"phone_number":	"+45 54 32 10 98",
+		"emergency_contact":	["+45 54 54 32 10", "Husband"],
+		"conditions":	["Dementia"],
+		"medicine":	[["Donepezil", "10mg", "116", "morning", "25-12-2023", "0"], ["Quetiapin", "50mg", "40", "evening", "22-12-2023", "0"]],
+		"correct_medicine_scanned":	0,
+		"allergies":	["eggs"]
+	}, {
+		"full_name":	"Christopher Wilson",
+		"room_number":	"111",
+		"CPR":	"110150-3712",
+		"date_of_birth":	"11-01-1950",
+		"phone_number":	"+45 43 21 09 87",
+		"emergency_contact":	["+45 43 43 21 09", "Wife"],
+		"conditions":	["Arthritis", "Dementia", "Diabetes", "Heart disease", "Chronic bronchitis"],
+		"medicine":	[["Metoprolol", "50mg", "19", "morning", "01-12-2023", "0"], ["Metformin", "500mg", "29", "morning", "02-12-2023", "0"], ["Bisoprolol", "8mg", "13", "morning", "07-12-2023", "0"], ["Sertraline", "100mg", "22", "morning", "04-12-2023", "0"]],
+		"correct_medicine_scanned":	0,
+		"allergies":	["shellfish", "nuts", "soy"]
+	}]
