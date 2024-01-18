@@ -19,15 +19,15 @@ GtkWidget *window;
 // =====================================================================================================================
 // Main function
 // =====================================================================================================================
-
+// argc + argv er GTK parametre - ved ikke hvad de gør
 int main(int argc, char *argv[]) {
     // Initialize GTK
     gtk_init(&argc, &argv);
 
     // Load CSS
     LoadCSS();
-
-    // Create the main window
+//loader generel CSS template
+    // Create the main window, indbykkede GTK funktioner:
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "P1 - Program");
     gtk_window_set_default_size(GTK_WINDOW(window), SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -38,13 +38,15 @@ int main(int argc, char *argv[]) {
     // Create a GtkStack
     GtkWidget *stack = gtk_stack_new();
     gtk_widget_set_size_request(stack, SCREEN_WIDTH, SCREEN_HEIGHT-HEADER_HEIGHT);
-    // Create a fixed container
+    // Create a fixed container, definer "hjørnet"
     GtkWidget *fixed = gtk_fixed_new();
     gtk_container_add(GTK_CONTAINER(window), fixed);
     gtk_fixed_put(GTK_FIXED(fixed), stack, 0, 100);
 
-
+// GTK, 1. parameter sætter eventen, og den givne widget,
+// 2. parameter er det event der kalder funktionen på 3 parameter - sætter scroll tilbage til 0.
     g_signal_connect(G_OBJECT(stack), "notify::visible-child", G_CALLBACK(On_Visible_Child_Changed), stack);
+
 
     UpdateStorageBasedOnAmount();
     // Creates a menu bar

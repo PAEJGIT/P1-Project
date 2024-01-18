@@ -42,7 +42,14 @@ GtkWidget *CreateTestCaseWindow() {
     ApplyCSSWithID(testCaseWindowBox, "testCaseWindowBox", "{margin: 2px }");
     gtk_container_add(GTK_CONTAINER(scrolledWindowTestCase), testCaseWindowBox);
 
+    // denne tager og initializerer en pointer, som er en pointer til en character.
+    // Denne her tager værdien af readjson(medicine.json),
+    // og assigner den til medicinejsonDS
+
+
     char *medicineJsonDS = ReadJSON("medicine.json");
+
+
     int medicineJsonEntries = GetJSONArrayLength(medicineJsonDS);
 
     for(int i = 0; i < medicineJsonEntries; i++) {

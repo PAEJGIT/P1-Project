@@ -46,8 +46,8 @@ bool CheckDosageOfMedication(char *medicationDosage, char *medicineDSEntry) {
     char *barcodeDosage = GetJSONItem(medicineDSEntry, "dosage");
     char *prescriptionDosage = MakeStringCopy(medicationDosage);
     // Remove the units from the dosages
-    prescriptionDosage[strlen(prescriptionDosage)-2] = '\0';
-    barcodeDosage[strlen(barcodeDosage)-2] = '\0';
+    prescriptionDosage[strlen(prescriptionDosage)-2] = '\0';  // fjerner mg
+    barcodeDosage[strlen(barcodeDosage)-2] = '\0';   // fjerner mg
     // Convert dosages to integers
     int prescriptionDosageInt = ConvertStringToInt(prescriptionDosage);
     int barcodeDosageInt = ConvertStringToInt(barcodeDosage);
@@ -85,7 +85,7 @@ bool CheckExpiryOfMedication(char *medicineDSEntry) {
     char *barcodeExpiryDate = GetJSONArrayItem(medicineDSEntry, 4, TRUE);
     // Get medication entry from data storage (barcode)
     char *barcodeExpiry = GetJSONArrayItem(medicineDSEntry, 4, TRUE);
-    barcodeExpiry[strlen(barcodeExpiry)-8] = '\0';
+    barcodeExpiry[strlen(barcodeExpiry)-8] = '\0'; // kun dage
     int barcodeExpiryInt = ConvertStringToInt(barcodeExpiry);
 
     // Get date (today)
@@ -172,7 +172,7 @@ char** CheckInteractionOfMedication() {
             currentlyScanningInteractions = GetJSONArray(medicineDSEntry, "interactions");
             break;
         }
-    }
+    } // hvis ny medicin blev indskannet, og der ingen interaction er fundet
     if(currentlyScanningInteractions == NULL) {
         perror("\ncurrentlyScanningInteractions has not been set, which means that the medicine name doesn't match any in the medicine database");
     }

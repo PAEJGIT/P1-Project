@@ -6,6 +6,9 @@
  * @param type —Choose between `success`, `warning`, `error` or `default`.\n\n Each will return a image component depending on state.
  * @return GtkWidget Image
  */
+
+// GTK consists of UI elements, known as widgets
+
 GtkWidget *FlagComponent(char *type) {
     GtkWidget *image;
     // Get image for flag

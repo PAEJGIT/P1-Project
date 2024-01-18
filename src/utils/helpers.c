@@ -28,6 +28,7 @@ void LoadCSS () {
         Log(__FUNCTION__, "ERROR", "Loading CSS File");
         g_error_free(error);
     }
+    // free memory:
     g_object_unref(provider);
 }
 void ApplyCSSWithID(GtkWidget *widget, char *name, char *cssText) {
@@ -55,7 +56,7 @@ int CenterObjectsWithEqualWidthOnPage(int windowWidth, int objectAmount, int obj
 }
 char *GetContentOfMedication(char *name_of_medication){
     // Get Database of Storage
-    char*DATABASE_STORAGE = ReadJSON("medicine.json");
+    char *DATABASE_STORAGE = ReadJSON("medicine.json");
     int DATABASE_STORAGE_LENGTH = GetJSONArrayLength(DATABASE_STORAGE);
     for (int i = 0; i < DATABASE_STORAGE_LENGTH; i++) {
         // Get medication name of [i]
@@ -71,6 +72,8 @@ char *GetContentOfMedication(char *name_of_medication){
     // If no match is found, return 0
     return "0";
 }
+
+// bliver ikke brugt
 char *CombineStringArray(char *arr, bool makeUpperCase) {
     // Get Length of array
     int _arr_length = GetJSONArrayLength(arr);
@@ -123,10 +126,11 @@ int *getScreenDimensions() {
  * @param chooseDatabase —choose between "residents.json" or "medicine.json".
  * @return string[]
  */
+ // Åbner en json fil ift hvilket navn der input:
 char *ReadJSON(char* chooseDatabase) {
     const char* filename;
 
-    if(strcmp(chooseDatabase, "residents.json") == 0) {
+    if(strcmp(chooseDatabase, "residents.json") == 0) {  //strcompare returns 0 if strings are equal
         filename = "../src/data/residents.json";
     } else if(strcmp(chooseDatabase, "medicine.json") == 0) {
         filename = "../src/data/medicine.json";
@@ -137,20 +141,32 @@ char *ReadJSON(char* chooseDatabase) {
     FILE* file = fopen(filename, "r");
     if (file == NULL) return NULL;
 
+// tager filen og læser fra start til slut:
     fseek(file, 0, SEEK_END);
-    long length = ftell(file);
+    long length = ftell(file); //størrelsen af filen, long fordi 0+
     fseek(file, 0, SEEK_SET);
 
+// content skal holde filen som en string, her allokeres plads i hukommelse:
     char* content = (char*)malloc(length + 1);
-    fread(content, 1, length, file);
+    fread(content, 1, length, file); // anden parameter, størrelsen af datatypen
     fclose(file);
 
+// length + 1, for at få NULL terminator ind til slut
     content[length] = '\0';
-    cJSON* json = cJSON_Parse(content);
+    cJSON* json = cJSON_Parse(content); //CJSON_Parse laver en string om til json
     free(content);
     return cJSON_Print(json);
 }
-char* UpdateStorageValue(const char *filename, const char *dsEntry, const char *nameOfFieldToChange, int intModificationValue, char *stringModificationValue, char *medicineNameInMedicineArray, int indexInArray, bool isArray) {
+
+// Funktion der opdaterer data storage, gør en ting gange mange
+char* UpdateStorageValue(const char *filename,
+                         const char *dsEntry,
+                         const char *nameOfFieldToChange,
+                         int intModificationValue,
+                         char *stringModificationValue,
+                         char *medicineNameInMedicineArray,
+                         int indexInArray,
+                         bool isArray) {
     // Read the entire file into a string
     FILE *file;
     char *filePath;
@@ -201,15 +217,15 @@ char* UpdateStorageValue(const char *filename, const char *dsEntry, const char *
         return NULL;
     }
 
-    // Loop through each medicine
+    // Loop through each entry
     int arraySize = GetJSONArrayLength(jsonString);
     for (int i = 0; i < arraySize; ++i) {
         // Use the original GetDStry function
         char* originalDataBaseEntry = GetJSONArrayItem(jsonString, i, false);
         // Use the original GetJSONItem function to get the name in each medicine structure
-        cJSON *dsEntryJSON = cJSON_Parse(dsEntry);
+        cJSON *dsEntryJSON = cJSON_Parse(dsEntry);  //datastorage entry
         char* originalDataBaseEntryName;
-        if(strcmp(dsEntryJSON->child->string, "full_name") == 0) {
+        if(strcmp(dsEntryJSON->child->string, "full_name") == 0) {  // cjson fil, hvor i hvilken fil
             originalDataBaseEntryName = GetJSONItem(originalDataBaseEntry, "full_name");
         } else if(strcmp(dsEntryJSON->child->string, "name") == 0) {
             originalDataBaseEntryName = GetJSONItem(originalDataBaseEntry, "name");
@@ -218,7 +234,7 @@ char* UpdateStorageValue(const char *filename, const char *dsEntry, const char *
         if (strcmp(originalDataBaseEntryName, dsEntryJSON->child->valuestring) == 0) {
             // Use the original GetJSONItem function to get the quantity
             if(!changeIsInt) {
-                if(isArray) {
+                if(isArray) {  //finder det der skal ændres, og ændrer det
                     cJSON *mainDatabaseEntryObject = cJSON_GetArrayItem(json, i);
                     cJSON *residentMedicineArray = cJSON_GetObjectItemCaseSensitive(mainDatabaseEntryObject, "medicine");
                     for(int l = 0; l < cJSON_GetArraySize(residentMedicineArray); l++) {
@@ -233,13 +249,13 @@ char* UpdateStorageValue(const char *filename, const char *dsEntry, const char *
                         }
                     }
                     //cJSON *residentMedicineArrayChildArray = cJSON_GetArrayItem(residentMedicineArray, );
-                } else {
+                } else {   // hvis ikke array og int, erstattes string
                     char *newStringToReplace = stringModificationValue;
                     cJSON *mainDatabaseEntryObject = cJSON_GetArrayItem(json, i);
                     cJSON_ReplaceItemInObjectCaseSensitive(mainDatabaseEntryObject, nameOfFieldToChange, cJSON_CreateString(newStringToReplace));
                 }
             } else {
-                if(isArray) {
+                if(isArray) {  // hvis int og array
                     cJSON *mainDatabaseEntryObject = cJSON_GetArrayItem(json, i);
                     cJSON *residentMedicineArray = cJSON_GetObjectItemCaseSensitive(mainDatabaseEntryObject, "medicine");
                     for(int l = 0; l < cJSON_GetArraySize(residentMedicineArray); l++) {
@@ -251,7 +267,7 @@ char* UpdateStorageValue(const char *filename, const char *dsEntry, const char *
                         }
                     }
                     //cJSON *residentMedicineArrayChildArray = cJSON_GetArrayItem(residentMedicineArray, );
-                } else {
+                } else {  // hvis int og ikke array eller string
                     cJSON *mainDatabaseEntryObject = cJSON_GetArrayItem(json, i);
                     cJSON_ReplaceItemInObjectCaseSensitive(mainDatabaseEntryObject, nameOfFieldToChange, cJSON_CreateNumber(intModificationValue));
                 }
@@ -269,9 +285,9 @@ char* UpdateStorageValue(const char *filename, const char *dsEntry, const char *
         free(jsonString);
         return 0;
     }
-
+// laver en cjson struct til string
     char *modifiedJson = cJSON_Print(json);
-    fprintf(fileWrite, "%s", modifiedJson);
+    fprintf(fileWrite, "%s", modifiedJson);  //overskriver filewrite med modifiedjson
 
     fclose(file);
     cJSON_free(modifiedJson);
@@ -283,17 +299,20 @@ char* UpdateStorageValue(const char *filename, const char *dsEntry, const char *
     cJSON_Delete(json);
     free(jsonString);
 }
+// Initializing a function, the return type is int,
+// the function takes a single argument which is char*
+// that is a character array or string
 int GetJSONArrayLength(char* array) {
     cJSON *json = cJSON_Parse(array);
     return cJSON_GetArraySize(json);
 }
 char* GetJSONArrayItem(char* dataBase, int index, bool value) {
     cJSON *json = cJSON_Parse(dataBase);
-    cJSON *jsonObject = cJSON_GetArrayItem(json, index);
+    cJSON *jsonObject = cJSON_GetArrayItem(json, index); // Tager en string fra index
     if(value) {
-        return jsonObject->valuestring;
+        return jsonObject->valuestring;  // Bent
     }
-    return cJSON_Print(jsonObject);
+    return cJSON_Print(jsonObject); // "Bent"
 }
 int GetDSArrayItemInt(char* dataBase, int index) {
     cJSON *json = cJSON_Parse(dataBase);
@@ -317,6 +336,7 @@ int GetJSONItemInt(char* entry, char* itemName) {
     int outputValueInt = itemValue->valueint;
     return outputValueInt;
 }
+// bruges ikke
 char *UpdateProfile(char *newDSString, char *fieldName, char *findableName) {
     cJSON *json = cJSON_Parse(newDSString);
     for(int i = 0; i < GetJSONArrayLength(newDSString); i++) {
@@ -328,6 +348,7 @@ char *UpdateProfile(char *newDSString, char *fieldName, char *findableName) {
     }
     return "";
 }
+// bruges  ikke
 char *GetQuantityOfMedication(char *name_of_medication, char *residentMedicationArray){
     for(int i = 0; i < GetJSONArrayLength(residentMedicationArray); i++) {
         if(strcmp(name_of_medication, GetJSONArrayItem(GetJSONArrayItem(residentMedicationArray, i, false), 0, true)) == 0) {
@@ -337,33 +358,38 @@ char *GetQuantityOfMedication(char *name_of_medication, char *residentMedication
     }
     return "0";
 }
+
+//opdaterer storage:
 void UpdateStorageBasedOnAmount() {
-    char *medicineDS = ReadJSON("medicine.json");
-    char *residentDS = ReadJSON("residents.json");
+    char *medicineDS = ReadJSON("medicine.json"); // giver data fra json fil som en string til medicineDS
+    char *residentDS = ReadJSON("residents.json"); // samme
     GatherMedicineForStorage *gatherMedicineForStorageArray = malloc(
-            GetJSONArrayLength(medicineDS) * sizeof(GatherMedicineForStorage));
-    int gatherMedicineForStorageArraySize = 0;
-    for(int i = 0; i < GetJSONArrayLength(medicineDS); i++) {
-        char *tempDSEntry = GetJSONArrayItem(medicineDS, i, false);
+            GetJSONArrayLength(medicineDS) * sizeof(GatherMedicineForStorage)); //allokerer plads til array ud fra antal medicin i json plus storage
+    int gatherMedicineForStorageArraySize = 0; // tom sum
+    for(int i = 0; i < GetJSONArrayLength(medicineDS); i++) { // i tæller antal typer medicin
+        char *tempDSEntry = GetJSONArrayItem(medicineDS, i, false); //
         GatherMedicineForStorage gatherMedicineForStorage;
         gatherMedicineForStorage.name = GetJSONItem(tempDSEntry, "name");
         gatherMedicineForStorage.amount = 0;
         gatherMedicineForStorageArray[i] = gatherMedicineForStorage;
         gatherMedicineForStorageArraySize++;
     }
-    for(int l = 0; l < GetJSONArrayLength(residentDS); l++) {
+    // efter loops har vi array af struct som har et navn på hvert index,
+    // og en værdi på hvert index, samlet værdi af medicintype:
+    for(int l = 0; l < GetJSONArrayLength(residentDS); l++) {  // Looper igennem residentslisten
         char *tempDSEntry = GetJSONArrayItem(residentDS, l, false);
         char *medicineArray = GetJSONArray(tempDSEntry, "medicine");
-        for(int k = 0; k < GetJSONArrayLength(medicineArray); k++) {
+        for(int k = 0; k < GetJSONArrayLength(medicineArray); k++) {  // Looper igennem nuværende residents medicin entry
             char *medicineName = GetJSONArrayItem(GetJSONArrayItem(medicineArray, k, false), 0, true);
             int medicineAmount = ConvertStringToInt(GetJSONArrayItem(GetJSONArrayItem(medicineArray, k, false), 2, true));
-            for(int p = 0; p < gatherMedicineForStorageArraySize; p++) {
+            for(int p = 0; p < gatherMedicineForStorageArraySize; p++) { // Tæller antal piller af type medicin vi tæller
                 if(strcmp(medicineName, gatherMedicineForStorageArray[p].name) == 0) {
                     gatherMedicineForStorageArray[p].amount += medicineAmount;
                 }
             }
         }
     }
+    // Tager antal af piller fra en int til en string og opdaterer json værdien
     for(int j = 0; j < gatherMedicineForStorageArraySize; j++) {
         for(int h = 0; h < GetJSONArrayLength(medicineDS); h++) {
             char *tempDSEntry = GetJSONArrayItem(medicineDS, h, false);
@@ -375,7 +401,7 @@ void UpdateStorageBasedOnAmount() {
             }
         }
     }
-    Log(__FUNCTION__, "DATA", "Updated JSON");
+    Log(__FUNCTION__, "DATA", "Updated JSON");  //
 }
 void AddScrollableWindowToArray(GtkWidget *scrollableWindow) {
     SIZET++;
